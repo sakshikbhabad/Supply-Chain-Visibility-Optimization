@@ -56,3 +56,23 @@ All transformations were performed in Power Query Editor (PQE). See
 
 ## Data Model Overview
 Star schema with `Fact_table` at the center and six dimension tables:
+<img width="1458" height="750" alt="Data_model" src="https://github.com/user-attachments/assets/e78f3305-680d-4625-8239-88d7a27abbf7" />
+- `Fact_table` holds one row per order line item with all measures (sales,
+  profit, quantity, discount) and foreign keys to every dimension.
+- `Dim_Date[Date] → Fact_table[order date (DateOrders)]`: 1:*, **active**
+  (default filter direction for time-based analysis).
+- `Dim_Date[Date] → Fact_table[shipping date (DateOrders)]`: 1:*, **inactive**
+  (invoked on demand via `USERELATIONSHIP` for shipping-date-based measures).
+- All other dimension relationships are standard 1:* from dimension to fact.
+
+Full relationship list and DAX measures are documented in `DAX_Measures.md`.
+A screenshot of the finished model diagram (Model view in Power BI Desktop) is
+at `screenshots/Data_model.png`.
+
+## Tools Used
+- Power BI Desktop (Power Query Editor + DAX)
+- Power Query M language
+- DAX (Data Analysis Expressions)
+- Kaggle (dataset source)
+- GitHub (version control / repository hosting)
+
