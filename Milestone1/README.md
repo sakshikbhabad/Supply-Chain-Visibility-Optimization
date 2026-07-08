@@ -54,6 +54,31 @@ All transformations were performed in Power Query Editor (PQE). See
    Profit, Quantity, Discount, and the two date columns).
 7. Applied all changes (Close & Apply) and saved.
 
+## DAX Queries
+DAX is written in **Power BI Desktop's Modeling tab** (New Table / New Measure),
+not inside Power Query Editor — PQE only understands M code. These were added
+after the Power Query steps above were applied.
+
+### Dim_Date (Modeling → New Table)
+```dax
+Dim_Date =
+CALENDAR (
+    MIN ( Fact_table[order date (DateOrders)] ),
+    MAX ( Fact_table[shipping date (DateOrders)] )
+)
+```
+
+### Dim_Date calculated columns (Modeling → New Column, on Dim_Date)
+```dax
+Year = YEAR ( Dim_Date[Date] )
+Month Number = MONTH ( Dim_Date[Date] )
+Month = FORMAT ( Dim_Date[Date], "MMMM" )
+Quarter = "Q" & QUARTER ( Dim_Date[Date] )
+Week = WEEKNUM ( Dim_Date[Date] )
+Day = DAY ( Dim_Date[Date] )
+Day Name = FORMAT ( Dim_Date[Date], "dddd" )
+```
+
 ## Data Model Overview
 Star schema with `Fact_table` at the center and six dimension tables:
 <img width="1458" height="750" alt="Data_model" src="https://github.com/user-attachments/assets/e78f3305-680d-4625-8239-88d7a27abbf7" />
