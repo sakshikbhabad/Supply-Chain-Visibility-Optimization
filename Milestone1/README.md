@@ -48,10 +48,9 @@ All transformations were performed in Power Query Editor (PQE). See
    - **Dim_Date** — a calculated date table spanning the min order date to the
      max shipping date, with Year, Month, Month Number, Quarter, Week, Day, and
      Day Name columns (DAX in `DAX_Measures.md`).
-6. **Removed redundant descriptive columns from `Fact_table`** once each
-   dimension was built and merged, keeping only foreign keys and measures
-   (Customer/Category/Department/Product/Shipping/Location IDs plus Sales,
-   Profit, Quantity, Discount, and the two date columns).
+6.**Removed unnecessary columns**: `Customer Email`, `Customer Password`, and
+   `Order Zipcode` were removed from `Fact_table`; `Product Image` and
+   `Product Description` were removed from `Dim_Product`.
 7. Applied all changes (Close & Apply) and saved.
 
 ## DAX Queries
