@@ -1,4 +1,3 @@
-# Supply Chain Analytics Dashboards
 ### Delivery Performance & Inventory Analysis
 
 This repository contains two Power BI / Tableau-style dashboards built on order, shipment, and inventory data:
